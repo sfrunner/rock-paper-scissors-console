@@ -24,6 +24,7 @@ python3 rock_paper_scissors.py
   - `rock`
   - `paper`
   - `scissors`
+  - `arm laser` (beats rock, paper, and scissors)
 - The computer will randomly choose its move.
 - The result of the round is printed, along with the **running score**:
   - Your wins

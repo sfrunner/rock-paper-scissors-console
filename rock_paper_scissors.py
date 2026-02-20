@@ -1,21 +1,29 @@
 import random
 
+VALID_CHOICES = ['rock', 'paper', 'scissors', 'arm laser']
+CLASSIC_CHOICES = ['rock', 'paper', 'scissors']
+
 def get_computer_choice():
-    """Randomly selects rock, paper, or scissors for the computer."""
-    choices = ['rock', 'paper', 'scissors']
-    return random.choice(choices)
+    """Randomly selects rock, paper, scissors, or arm laser for the computer."""
+    return random.choice(VALID_CHOICES)
 
 def determine_winner(player_choice, computer_choice):
     """Determines the winner of a round."""
     if player_choice == computer_choice:
         return 'tie'
-    
+
+    # Arm laser beats rock, paper, and scissors
+    if player_choice == 'arm laser' and computer_choice in CLASSIC_CHOICES:
+        return 'player'
+    if computer_choice == 'arm laser' and player_choice in CLASSIC_CHOICES:
+        return 'computer'
+
     winning_combinations = {
         'rock': 'scissors',
         'paper': 'rock',
         'scissors': 'paper'
     }
-    
+
     if winning_combinations[player_choice] == computer_choice:
         return 'player'
     else:
@@ -42,7 +50,7 @@ def main():
     print("=" * 50)
     print("Welcome to Rock Paper Scissors!")
     print("=" * 50)
-    print("\nValid choices: rock, paper, scissors")
+    print("\nValid choices: rock, paper, scissors, arm laser (beats all)")
     print("Type 'quit' to exit the game\n")
     
     while True:
@@ -61,8 +69,8 @@ def main():
             break
         
         # Validate player choice
-        if player_choice not in ['rock', 'paper', 'scissors']:
-            print("Invalid choice! Please enter 'rock', 'paper', or 'scissors'.")
+        if player_choice not in VALID_CHOICES:
+            print("Invalid choice! Please enter 'rock', 'paper', 'scissors', or 'arm laser'.")
             continue
         
         # Get computer choice and determine winner
